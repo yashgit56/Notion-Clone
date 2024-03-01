@@ -21,16 +21,14 @@ export const Banner = ({
 
     const onRemove = () => {
         const promise = remove({ id: documentId  });
-
-        router.push("/documents"); 
-
+        
         toast.promise(promise, {
             loading: "Deleting a note...",
             success: "Note Deleted.",
             error: "Failed To Delete Note."
         });
 
-        
+        router.push("/documents") ;
     }
 
     const onRestore = () => {
