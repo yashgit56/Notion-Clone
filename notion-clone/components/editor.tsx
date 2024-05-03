@@ -29,17 +29,9 @@ const Editor = ({
         return response.url ;
     }
 
-    // type BlockConfig = {
-    //     type: string;
-    //     readonly propSchema: PropSchema;
-    //     content: "inline" | "none" | "table";
-    // }; 
-
-    // type BlockConfigRecord = Record<string, BlockConfig>;
-
     const editor: BlockNoteEditor = useBlockNote({
         editable,
-        initialContent: initialContent ? JSON.parse(initialContent) as PartialBlock<BlockConfig, InlineContentSchema, StyleSchema>[]
+        initialContent: initialContent ? JSON.parse(initialContent) as PartialBlock<>[]
         : undefined,
         onEditorContentChange: (editor) => {
             onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
