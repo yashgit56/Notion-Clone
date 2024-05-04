@@ -35,6 +35,7 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
     uploadFile: handleUpload,
   });
 
+<<<<<<< HEAD
   return (
     <div>
       <BlockNoteView
@@ -48,6 +49,26 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
       />
     </div>
   );
+=======
+    const editor: BlockNoteEditor = useBlockNote({
+        editable,
+        initialContent: initialContent ? JSON.parse(initialContent) as PartialBlock<>[]
+        : undefined,
+        onEditorContentChange: (editor) => {
+            onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
+        },
+        uploadFile: handleUpload
+    }) ;
+
+    return (
+        <div>
+        <BlockNoteView
+            editor={editor}
+            theme={resolvedTheme === "dark" ? "dark" : "light"} 
+        ></BlockNoteView>    
+        </div>
+    );
+>>>>>>> 1ab2d4faddc26af38f8d7f2074bf19fd41c3d4bb
 };
 
 export default Editor;
