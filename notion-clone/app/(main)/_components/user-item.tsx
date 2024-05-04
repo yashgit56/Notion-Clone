@@ -3,7 +3,8 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { SignOutButton, useUser } from "@clerk/clerk-react";
-import { ChevronsLeftRight } from "lucide-react";
+import { ChevronsLeftRight, MoreHorizontal } from "lucide-react";
+import UserSettings from "./userSettings";
 
 export const UserItem = () => {
     const { user } = useUser() ;
@@ -31,10 +32,13 @@ export const UserItem = () => {
                 alignOffset={11}
                 forceMount
             >
-                <div className="flex flex-col space-y-4 p-2">
+                <div className="flex items-center justify-between w-full p-2">
                     <p className="text-xs font-medium leading-none text-muted-foreground">
                         {user?.emailAddresses[0].emailAddress}
                     </p>
+                    <div className="flex items-center gap-x-2">
+                        <UserSettings />
+                    </div>
                 </div>
                 <div className="flex items-center gap-x-2">
                     <div className="rounded-md bg-secondary p-1">

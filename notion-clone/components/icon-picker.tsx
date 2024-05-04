@@ -1,14 +1,19 @@
 "use client" ;
 
-import { Popover } from "@radix-ui/react-popover";
-import EmojiPicker, { Theme } from "emoji-picker-react" ;
+import EmojiPicker, { Theme } from "emoji-picker-react" ; 
 import { useTheme } from "next-themes";
-import { PopoverContent, PopoverTrigger } from "./ui/popover";
+
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger
+} from "@/components/ui/popover" ;
+import { isArgumentsObject } from "util/types";
 
 interface IconPickerProps {
-    onChange: (icon:string) => void ;
+    onChange: (icon: string) => void ;
     children: React.ReactNode;
-    asChild?: boolean  
+    asChild?: boolean;
 };
 
 export const IconPicker = ({
@@ -17,11 +22,11 @@ export const IconPicker = ({
     asChild
 }:IconPickerProps) => {
     const { resolvedTheme } = useTheme() ;
-    const currentTheme = ( resolvedTheme || "light") as keyof typeof themeMap 
-
+    const currentTheme = (resolvedTheme || "light") as keyof typeof themeMap
+    
     const themeMap = {
         "dark" : Theme.DARK,
-        "light": Theme.LIGHT,
+        "light" : Theme.LIGHT,
     };
 
     const theme = themeMap[currentTheme] ;
@@ -31,13 +36,14 @@ export const IconPicker = ({
             <PopoverTrigger asChild={asChild}>
                 {children}
             </PopoverTrigger>
-            <PopoverContent>
-                <EmojiPicker 
+            <PopoverContent className="p-0 w-full border-none shadow-none">
+                <EmojiPicker
                     height={350}
                     theme={theme}
-                    onEmojiClick={(data) => onChange(data.emoji)} 
+                    onEmojiClick={(data) => onChange(data.emoji)}  
                 />
             </PopoverContent>
         </Popover>
-    );
+    )
+
 }

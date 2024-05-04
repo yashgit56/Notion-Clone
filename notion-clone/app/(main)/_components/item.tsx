@@ -7,10 +7,23 @@ import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import { PaddingIcon } from "@radix-ui/react-icons";
 import { useMutation } from "convex/react";
-import { ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, Plus, Trash } from "lucide-react";
+import { 
+    ChevronDown,
+    ChevronRight,
+    LucideIcon,
+    MoreHorizontal, 
+    Plus, 
+    Trash 
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { 
+    DropdownMenu, 
+    DropdownMenuContent, 
+    DropdownMenuItem, 
+    DropdownMenuSeparator, 
+    DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
 import { useUser } from "@clerk/clerk-react";
 
 interface ItemProps {
@@ -19,6 +32,8 @@ interface ItemProps {
     active? : boolean ;
     expanded? : boolean;
     isSearch? : boolean;
+    isSettings? : boolean;
+    isUpdates? : boolean;
     level? : number ;
     onExpand? : () => void ;
     label: String;
@@ -34,6 +49,8 @@ export const Item = ({
     active,
     documentIcon,
     isSearch,
+    isSettings,
+    isUpdates, 
     level = 0,
     onExpand,
     expanded,
@@ -131,6 +148,25 @@ export const Item = ({
                     <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none
                     items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium
                     text-muted-foreground opacity-100">
+                        Ctrl + k
+                    </kbd>
+                )
+            }
+            {
+                isSettings && (
+                    <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none
+                    items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium
+                    text-muted-foreground opacity-100">
+                        Ctrl + e 
+                    </kbd>
+                )
+            }
+            {
+                isUpdates && (
+                    <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none
+                    items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium
+                    text-muted-foreground opacity-100">
+                        Ctrl + p 
                     </kbd>
                 )
             }

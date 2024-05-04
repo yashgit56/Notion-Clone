@@ -80,7 +80,7 @@ const Publish = ({
                         <Globe
                             className="text-sky-500 w-4 h-4 ml-2"
                         />
-                    )})
+                    )}
                 </Button>
             </PopoverTrigger>
             <PopoverContent

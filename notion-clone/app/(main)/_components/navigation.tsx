@@ -1,7 +1,7 @@
 "use client" ;
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash, Clock9 } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -16,8 +16,10 @@ import { TrashBox } from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
 import { Navbar } from "@/app/(main)/_components/navbar";
+import { useRouter } from "next/navigation";
 
 export const Navigation = () => {
+    const router = useRouter() ;
     const settings = useSettings() ;
     const search = useSearch() ;
     const params = useParams() ;
@@ -112,7 +114,8 @@ export const Navigation = () => {
     }
 
     const handleCreate = () => {
-        const promise = create({ title: "Untitled"}) ;
+        const promise = create({ title: "Untitled"})
+            .then((documentId)=> router.push(`/documents/${documentId}`)) ;
 
         toast.promise(promise, {
             loading: "Creating a new Note...",
@@ -145,9 +148,15 @@ export const Navigation = () => {
                             onClick={search.onOpen}
                         />
                         <Item
-                            label="Settings"
+                            label="Updates"
+                            icon={Clock9}
+                            isUpdates
+                            onClick={()=>{}}
+                        />
+                        <Item
+                            label="My Settings"
                             icon={Settings}
-                            isSearch
+                            isSettings
                             onClick={settings.onOpen}
                         />
                         <Item 
@@ -191,7 +200,10 @@ export const Navigation = () => {
                     isMobile && "left-0 w-full"
                 )}>
                     {!!params.documentId ? (
-                        <Navbar isCollapsed={isCollapsed} onResetWidth={()=>{}} />
+                        <Navbar 
+                            isCollapsed ={isCollapsed}
+                            onResetWidth={resetWidth}
+                        />
                     ): (
                         <nav className="bg-transparent px-3 py-2 w-full">
                             { isCollapsed && 

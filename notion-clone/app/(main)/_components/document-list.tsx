@@ -56,7 +56,7 @@ export const DocumentList = ({
     return (
         <>
            <p style={{paddingLeft: level ? `${(level * 12) + 25}px` : undefined}}
-                className={cn("hidden text-sm font-medium text-muted-foreground",
+                className={cn("hidden text-sm font-medium text-muted-foreground/80",
                 expanded && "last:block",
                 level ===  0 && "hidden")}>
                 No Pages Inside 
