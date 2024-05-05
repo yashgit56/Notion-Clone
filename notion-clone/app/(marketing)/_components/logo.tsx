@@ -18,7 +18,7 @@ export const Logo = () => {
                 alt="Logo"
                 >
             </Image>
-            <p className={cn("font-semibold", font.className)}></p>
+            <p className={cn("font-semibold", font.className)}> Notion </p>
         </div>
     );
 }
